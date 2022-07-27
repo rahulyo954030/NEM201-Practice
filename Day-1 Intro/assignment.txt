@@ -1,0 +1,284 @@
+<----------------$in----------------->
+db.web.find( { age: { $in: [ 21,26 ] } } )
+{ _id: ObjectId("62e172db0a62c4cf23059767"),
+  name: 'Rahul',
+  batch: 'web17',
+  rollno: '132',
+  age: 26,
+  tech: [ 'html', 'css', 'react' ] }
+{ _id: ObjectId("62e172db0a62c4cf23059768"),
+  name: 'Nitesh',
+  batch: 'web16',
+  rollno: '084',
+  age: 21,
+  tech: [ 'backend', 'redux' ] }
+
+  <----------------$all----------------->
+  db.web.find( { tech: { $all: [ "html", "css" ] } } )
+{ _id: ObjectId("62e172db0a62c4cf23059767"),
+  name: 'Rahul',
+  batch: 'web17',
+  rollno: '132',
+  age: 26,
+  tech: [ 'html', 'css', 'react' ] }
+
+   <----------------$and----------------->
+db.web.find({$and: [{batch: "web17"},{age: 23}]}).pretty()
+{ _id: ObjectId("62e173610a62c4cf23059769"),
+  name: 'Soumya',
+  batch: 'web17',
+  rollno: '475',
+  age: 23,
+  tech: [ 'node', 'express', 'mongodb' ] }
+
+  <----------------------$or---------------->
+db.web.find( { $or: [ { age: { $gt: 20 } }, { batch: "web17" } ] } )
+{ _id: ObjectId("62e172db0a62c4cf23059767"),
+  name: 'Rahul',
+  batch: 'web17',
+  rollno: '132',
+  age: 26,
+  tech: [ 'html', 'css', 'react' ] }
+{ _id: ObjectId("62e172db0a62c4cf23059768"),
+  name: 'Nitesh',
+  batch: 'web16',
+  rollno: '084',
+  age: 21,
+  tech: [ 'backend', 'redux' ] }
+{ _id: ObjectId("62e173610a62c4cf23059769"),
+  name: 'Soumya',
+  batch: 'web17',
+  rollno: '475',
+  age: 23,
+  tech: [ 'node', 'express', 'mongodb' ] }
+{ _id: ObjectId("62e173610a62c4cf2305976a"),
+  name: 'Dhiraj',
+  batch: 'web16',
+  rollno: '257',
+  age: 25,
+  tech: [ 'backend', 'redux' ] }
+
+
+  <---------------$set-------------->
+  db.web.updateOne({name:"Nitesh"}, {$set:{age:22}})
+{ acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0 }
+db.web.find().pretty()
+{ _id: ObjectId("62e172db0a62c4cf23059767"),
+  name: 'Rahul',
+  batch: 'web17',
+  rollno: '132',
+  age: 26,
+  tech: [ 'html', 'css', 'react' ] }
+{ _id: ObjectId("62e172db0a62c4cf23059768"),
+  name: 'Nitesh',
+  batch: 'web16',
+  rollno: '084',
+  age: 22,
+  tech: [ 'backend', 'redux' ] }
+{ _id: ObjectId("62e173610a62c4cf23059769"),
+  name: 'Soumya',
+  batch: 'web17',
+  rollno: '475',
+  age: 23,
+  tech: [ 'node', 'express', 'mongodb' ] }
+{ _id: ObjectId("62e173610a62c4cf2305976a"),
+  name: 'Dhiraj',
+  batch: 'web16',
+  rollno: '257',
+  age: 25,
+  tech: [ 'backend', 'redux' ] }
+
+  <-----------$rename------------------------>
+db.web.updateOne({name:"Rahul"}, {$rename:{tech:"Skills", age:"Age"}})
+{ acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0 }
+  db.web.find().pretty()
+{ _id: ObjectId("62e172db0a62c4cf23059767"),
+  name: 'Rahul',
+  batch: 'web17',
+  rollno: '132',
+  Age: 26,
+  Skills: [ 'html', 'css', 'react' ] }
+{ _id: ObjectId("62e172db0a62c4cf23059768"),
+  name: 'Nitesh',
+  batch: 'web16',
+  rollno: '084',
+  age: 22,
+  tech: [ 'backend', 'redux' ] }
+{ _id: ObjectId("62e173610a62c4cf23059769"),
+  name: 'Soumya',
+  batch: 'web17',
+  rollno: '475',
+  age: 23,
+  tech: [ 'node', 'express', 'mongodb' ] }
+{ _id: ObjectId("62e173610a62c4cf2305976a"),
+  name: 'Dhiraj',
+  batch: 'web16',
+  rollno: '257',
+  age: 25,
+  tech: [ 'backend', 'redux' ] }
+
+
+<-----------$push----------------->
+db.web.updateOne({name:"Rahul"}, {$push:{tech:"nodejs"}}) 
+{ acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0 }
+db.web.find().pretty()
+{ _id: ObjectId("62e172db0a62c4cf23059767"),
+  name: 'Rahul',
+  batch: 'web17',
+  rollno: '132',
+  age: 26,
+  tech: [ 'html', 'css', 'react', 'nodejs' ] }
+{ _id: ObjectId("62e172db0a62c4cf23059768"),
+  name: 'Nitesh',
+  batch: 'web16',
+  rollno: '084',
+  age: 22,
+  tech: [ 'backend', 'redux' ] }
+{ _id: ObjectId("62e173610a62c4cf23059769"),
+  name: 'Soumya',
+  batch: 'web17',
+  rollno: '475',
+  age: 23,
+  tech: [ 'node', 'express', 'mongodb' ] }
+{ _id: ObjectId("62e173610a62c4cf2305976a"),
+  name: 'Dhiraj',
+  batch: 'web16',
+  rollno: '257',
+  age: 25,
+  tech: [ 'backend', 'redux' ] }
+
+  <----------------$pop----------------->
+  db.web.updateOne({name:"Rahul"}, {$pop:{tech:1}}) 
+{ acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0 }
+db.web.find().pretty()
+{ _id: ObjectId("62e172db0a62c4cf23059767"),
+  name: 'Rahul',
+  batch: 'web17',
+  rollno: '132',
+  age: 26,
+  tech: [ 'html', 'css', 'react' ] }
+{ _id: ObjectId("62e172db0a62c4cf23059768"),
+  name: 'Nitesh',
+  batch: 'web16',
+  rollno: '084',
+  age: 22,
+  tech: [ 'backend', 'redux' ] }
+{ _id: ObjectId("62e173610a62c4cf23059769"),
+  name: 'Soumya',
+  batch: 'web17',
+  rollno: '475',
+  age: 23,
+  tech: [ 'node', 'express', 'mongodb' ] }
+{ _id: ObjectId("62e173610a62c4cf2305976a"),
+  name: 'Dhiraj',
+  batch: 'web16',
+  rollno: '257',
+  age: 25,
+  tech: [ 'backend', 'redux' ] }
+
+
+<-------------$min------------------------->
+db.web.updateOne({name:"Nitesh"}, {$min:{age:21}})
+{ acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0 }
+db.web.find().pretty()
+{ _id: ObjectId("62e172db0a62c4cf23059767"),
+  name: 'Rahul',
+  batch: 'web17',
+  rollno: '132',
+  age: 26,
+  tech: [ 'html', 'css', 'react' ] }
+{ _id: ObjectId("62e172db0a62c4cf23059768"),
+  name: 'Nitesh',
+  batch: 'web16',
+  rollno: '084',
+  age: 21,
+  tech: [ 'backend', 'redux' ] }
+{ _id: ObjectId("62e173610a62c4cf23059769"),
+  name: 'Soumya',
+  batch: 'web17',
+  rollno: '475',
+  age: 23,
+  tech: [ 'node', 'express', 'mongodb' ] }
+{ _id: ObjectId("62e173610a62c4cf2305976a"),
+  name: 'Dhiraj',
+  batch: 'web16',
+  rollno: '257',
+  age: 25,
+  tech: [ 'backend', 'redux' ] }
+
+
+<-------------$max------------------------->
+db.web.updateOne({name:"Nitesh"}, {$max:{age:22}})
+{ acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0 }
+db.web.find().pretty()
+{ _id: ObjectId("62e172db0a62c4cf23059767"),
+  name: 'Rahul',
+  batch: 'web17',
+  rollno: '132',
+  age: 26,
+  tech: [ 'html', 'css', 'react' ] }
+{ _id: ObjectId("62e172db0a62c4cf23059768"),
+  name: 'Nitesh',
+  batch: 'web16',
+  rollno: '084',
+  age: 22,
+  tech: [ 'backend', 'redux' ] }
+{ _id: ObjectId("62e173610a62c4cf23059769"),
+  name: 'Soumya',
+  batch: 'web17',
+  rollno: '475',
+  age: 23,
+  tech: [ 'node', 'express', 'mongodb' ] }
+{ _id: ObjectId("62e173610a62c4cf2305976a"),
+  name: 'Dhiraj',
+  batch: 'web16',
+  rollno: '257',
+  age: 25,
+  tech: [ 'backend', 'redux' ]
+
+<-------------$unset------------------------->
+db.web.aggregate([ { $unset: "rollno" } ])
+{ _id: ObjectId("62e172db0a62c4cf23059767"),
+  name: 'Rahul',
+  batch: 'web17',
+  age: 26,
+  tech: [ 'html', 'css', 'react' ] }
+{ _id: ObjectId("62e172db0a62c4cf23059768"),
+  name: 'Nitesh',
+  batch: 'web16',
+  age: 22,
+  tech: [ 'backend', 'redux' ] }
+{ _id: ObjectId("62e173610a62c4cf23059769"),
+  name: 'Soumya',
+  batch: 'web17',
+  age: 23,
+  tech: [ 'node', 'express', 'mongodb' ] }
+{ _id: ObjectId("62e173610a62c4cf2305976a"),
+  name: 'Dhiraj',
+  batch: 'web16',
+  age: 25,
+  tech: [ 'backend', 'redux' ] }
