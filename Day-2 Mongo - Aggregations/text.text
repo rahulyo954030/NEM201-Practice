@@ -1,0 +1,22 @@
+db.orders.insertMany([{data}]) -- orders is collection name
+
+db.orders.aggregate([$match:{size:"medium"}])
+
+db.orders.aggregate([{$match:{price:{$lt:16}}}])
+
+we can change key names while using group
+db.orders.aggregate([{$match:{size:"medium}},{$group: {_id: "$name", totalQuantity:{$sum: "$quantity"}}}]) -sum
+db.orders.aggregate([{$match:{size:"medium}},{$group: {_id: "$name", totalPrice:{$sum: "$price"}}}])  -sum
+db.orders.aggregate([{$match:{size:"medium}},{$group: {_id: "$name", totalPrice:{$avg: "$price"}}}]) -Average
+db.orders.aggregate([{$match:{size:"small"}},{$group: {_id: "$name", totalPrice:{$avg: "$price"}}}]) -Average
+db.orders.aggregate([{$match:{size:"small"}},{$group: {_id: "$name", totalPrice:{$avg: "$price"}}},{$sort: {totalPrice: -1}}]) -Average with sort
+
+<---------------------------Group------------------------------->
+db.zips.aggregate([{$group: {_id: "$state"}}])
+db.zips.aggregate([{$group: {_id: "$state", totalPop:{$sum: "$pop"}}}])
+db.zips.aggregate([{$group: {_id: "$state", totalPop:{$sum: "$pop"} }}])
+db.zips.aggregate([{$group: {_id: "$state", totalPop:{$sum: "$pop"} }}, {$sort:{totalPopulation:-1}}]) -sort
+db.zips.aggregate([{$group: {_id: "$state", totalPop:{$sum: "$pop"} }}, {$match:{totalPopulation: {$gte:600000}}}]) -above 600000 populations
+db.zips.aggregate([{$group: {_id: "$state", totalPop:{$sum: "$pop"} }}, {$match:{totalPopulation: {$gte:600000}}}, {skip:1},{$limit:1}]) - skip 1
+db.zips.aggregate([{$group :{_id:{state:"$state", city:"$city"}, pop:{$sum:"$pop"}}}]) - sum of population
+
