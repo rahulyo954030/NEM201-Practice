@@ -1,0 +1,32 @@
+const men = mongoose.schema({
+    "BIGGEST DEALS ON TOP BRANDS": [String],
+    "CATEGORIES TO BAG": [String],
+    "EXPLORE TOP BRANDS": [String],
+    "MYNTRA LUXE" : [String],
+    "TRENDING IN INDIAN WEAR" : [String]
+    "TRENDING IN SPORTS WEAR": [String],
+    "TRENDING IN FOOTWEAR" : [String],
+    "TRENDING IN ACCESSORIES": [String]
+})
+
+const women = mongoose.schema({
+    "BIGGEST DEALS ON TOP BRANDS": [String],
+    "CATEGORIES TO BAG": [String],
+    "EXPLORE TOP BRANDS": [String],
+    "MYNTRA LUXE" : [String],
+    "TRENDING IN INDIAN WEAR" : [String]
+    "TRENDING IN SPORTS WEAR": [String],
+    "TRENDING IN FOOTWEAR" : [String],
+    "TRENDING IN ACCESSORIES": [String]
+})
+
+const kids = mongoose.schema({
+    "BIGGEST DEALS ON TOP BRANDS": [String],
+    "CATEGORIES TO BAG": [String],
+    "EXPLORE TOP BRANDS": [String],
+    "MYNTRA LUXE" : [String],
+    "TRENDING IN INDIAN WEAR" : [String]
+    "TRENDING IN SPORTS WEAR": [String],
+    "TRENDING IN FOOTWEAR" : [String],
+    "TRENDING IN ACCESSORIES": [String]
+})

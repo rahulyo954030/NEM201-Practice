@@ -1,0 +1,23 @@
+const movie = mongoose.schema({
+    img : String,
+    title : String,
+    rating : String,
+    version : String,
+    language : String,
+    duration: String,
+    catogery:[String],
+    date : String,
+    about : String,
+    offers:[String],
+    cast : [{
+        image : String,
+        name : String,
+        profession : String,
+    }]
+    crew : [{
+        image : String,
+        name : String,
+        profession : String,
+    }]
+})
+
