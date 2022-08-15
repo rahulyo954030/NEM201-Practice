@@ -1,0 +1,7 @@
+{
+    "db": {
+        "url":"mongodb://test.company.com"
+    },
+    "aws": {},
+    "test": []
+}
